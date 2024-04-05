@@ -37,32 +37,14 @@
     "Last Updated: " + currentTime;
 }
 function fetchFinanceData() {
-  const simulatedData = [
-    {
-      title: "March Grocery",
-      category: "Groceries",
-      amount: "$200",
-      type: "Debit",
-      date: "2024-04-01",
-    },
-    {
-      title: "Utility Bill",
-      category: "Utilities",
-      amount: "$150",
-      type: "Debit",
-      date: "2024-04-02",
-    },
-    {
-      title: "Movie Night",
-      category: "Entertainment",
-      amount: "$100",
-      type: "Debit",
-      date: "2024-04-03",
-    },
-  ];
-  updateFinanceTable(simulatedData);
+  const url = "https://literate-goggles-v6v7qgg5v7gr2x9v-8000.app.github.dev/financeData";
+  fetch(url, { method: "GET" })
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+  
+  //updateFinanceTable(simulatedData);
   updateCurrentTime();
-}
+}  
 
 function updateFinanceTable(data) {
   const financeDataElement = document.getElementById("financeData");
