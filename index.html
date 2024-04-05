@@ -67,7 +67,7 @@ function fetchFinanceData() {
 function updateFinanceTable(data) {
   const financeDataElement = document.getElementById("financeData");
   financeDataElement.innerHTML = ""; // Clear existing data
-  simulatedData.forEach((item) => {
+  data.forEach((item) => {
     console.log(item);
     // Your code goes here!
     // if item is a td
@@ -75,14 +75,32 @@ function updateFinanceTable(data) {
     tdNodeTitle.innerText = item.title;
 
     const tdNodeCategory = document.createElement("td");
-    tdNodeCategory.innerText = item.title;
+    tdNodeCategory.innerText = item.category;
+
+    const tdNodeAmount = document.createElement("td");
+    tdNodeAmount.innerText = item.amount;
+
+    const tdNodeType = document.createElement("td");
+    tdNodeType.innerText = item.type;
+
+    const tdNodeDate = document.createElement("td");
+    tdNodeDate.innerText = item.date;
+
     // if item is a tr
     const trNode = document.createElement("tr");
-    trNode.innerText = item;
+
+    // append items
+    trNode.appendChild(tdNodeTitle);
+    trNode.appendChild(tdNodeCategory);
+    trNode.appendChild(tdNodeAmount);
+    trNode.appendChild(tdNodeType);
+    trNode.appendChild(tdNodeType);
+    trNode.appendChild(tdNodeDate);
+    financeDataElement.appendChild(trNode);
   });
 }
 // Run it
-setInterval(fetchFinanceData(), 5000);
+setInterval(fetchFinanceData, 5000);
 //fetchFinanceData();
       </script>
 </body>
