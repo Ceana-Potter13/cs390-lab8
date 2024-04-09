@@ -3,9 +3,6 @@ const app = express();
 app.use('/public', express.static('public'));
 
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
 
 app.get("/financeData", function (req, res) {
     const simulatedData = [
@@ -34,3 +31,17 @@ app.get("/financeData", function (req, res) {
     res.type("json");
     res.send(simulatedData);
   });
+
+app.post("/submit", function(req, res) {
+  simulatedData.push({
+    title: req.body.expensePlace,
+    category: req.body.expenseCategory,
+    amount: req.body.expenseAmount,
+    type: req.body.paymentMode,
+    date: req.body.expenseDate
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
